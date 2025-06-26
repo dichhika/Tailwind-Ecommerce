@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive Navbar with Mobile Floating Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="text-2xl font-bold text-green-600">
+          Fashion<span class="text-black">Hub</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-6 font-semibold">
+          <!-- Links -->
+          <ul class="flex space-x-6 items-center">
+            <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+            <li><a href="about.html" class="hover:text-green-600">About</a></li>
+
+            <li class="relative">
+              <button
+                id="desktopProductBtn"
+                class="hover:text-green-600 flex items-center focus:outline-none"
+              >
+                Product
+                <i
+                  id="desktopProductIcon"
+                  class="fas fa-chevron-down ml-1 transition-transform"
+                ></i>
+              </button>
+              <ul
+                id="desktopProductSubMenu"
+                class="absolute left-0 mt-2 bg-white shadow-md rounded hidden min-w-[120px]"
+              >
+                <li>
+                  <a href="men.html" class="block px-4 py-2 hover:bg-green-100"
+                    >Men</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="women.html"
+                    class="block px-4 py-2 hover:bg-green-100"
+                    >Women</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="contact.html" class="hover:text-green-600">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Search input + icon on desktop -->
+          <div
+            class="flex items-center border border-gray-300 rounded px-2 ml-6"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              class="outline-none px-2 py-1 text-sm"
+            />
+            <button class="text-green-600">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Cart & Login icons on desktop -->
+          <div class="flex items-center space-x-6 text-lg ml-6">
+            <button title="Cart" class="hover:text-green-600 relative">
+              <i class="fas fa-shopping-cart"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
+                >0</span
+              >
+            </button>
+
+            <button title="Login" class="hover:text-green-600">
+              <i class="fas fa-user"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden">
+          <button id="menuBtn" class="text-3xl text-green-600">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden px-6 pb-4 space-y-3 bg-white border-t border-gray-200"
+      >
+        <a href="index.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Home</a
+        >
+        <a href="about.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >About</a
+        >
+
+        <!-- Product Mobile -->
+        <div>
+          <button
+            id="productBtn"
+            class="w-full text-left px-2 py-2 hover:bg-green-100 rounded flex justify-between items-center"
+          >
+            Product
+            <i
+              id="productIcon"
+              class="fas fa-chevron-down transition-transform"
+            ></i>
+          </button>
+          <div id="productSubMenu" class="hidden pl-4 mt-1 space-y-1">
+            <a
+              href="men.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Men</a
+            >
+            <a
+              href="women.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Women</a
+            >
+          </div>
+        </div>
+
+        <a
+          href="contact.html"
+          class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Contact</a
+        >
+      </div>
+    </nav>
+    <!-- Mobile floating search button & input -->
+    <div
+      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
+    >
+      <input
+        id="mobileSearchInput"
+        type="text"
+        placeholder="Search..."
+        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
+      />
+      <button
+        id="mobileSearchBtn"
+        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
+        title="Search"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <div class="bg-gray-100">
+      <!-- Add this right below <body> tag -->
+
+      <section
+        class="bg-white-100 text-green-800 py-16 flex flex-col items-center justify-center"
+      >
+        <h1 class="text-4xl font-bold mb-2 md:text-2xl">
+          Elegant Women's Collection
+        </h1>
+        <p class="text-lg max-w-xl text-center">
+          Step into style with our latest curated fashion for women.
+        </p>
+      </section>
+
+      <main class="max-w-6xl mx-auto px-6 py-10">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+        >
+          <!-- Product 1 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/elegant-dress.jpg"
+              alt="Elegant Dress"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Elegant Dress</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 2999</p>
+            <button
+              data-name="Elegant Dress"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 2 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/tshirt.jpg"
+              alt="Cool T-shirt"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Cool T-shirt</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 999</p>
+            <button
+              data-name="Cool T-shirt"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 3 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/plasted skirts.webp"
+              alt="Pleated Skirt"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Pleated Skirt</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 1229</p>
+            <button
+              data-name="Pleated Skirt"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 4 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/jacket.jpg"
+              alt="Denim Jacket"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Denim Jacket</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 1599</p>
+            <button
+              data-name="Denim Jacket"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 5 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/cardiyan.webp"
+              alt="Cozy Cardigan"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Cozy Cardigan</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 1449</p>
+            <button
+              data-name="Cozy Cardigan"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 6 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/jeans.jpg"
+              alt="Skinny Jeans"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Skinny Jeans</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 1200</p>
+            <button
+              data-name="Skinny Jeans"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 7 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/tan-top.jpg"
+              alt="Basic Tank Top"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Basic Tank Top</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 799</p>
+            <button
+              data-name="Basic Tank Top"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 8 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/blazer.jpg"
+              alt="Chic Blazer"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Chic Blazer</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 1999</p>
+            <button
+              data-name="Chic Blazer"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 9 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/leggings.jpg"
+              alt="Comfort Leggings"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Comfort Leggings</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 499</p>
+            <button
+              data-name="Comfort Leggings"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+
+          <!-- Product 10 -->
+          <div
+            class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col"
+          >
+            <img
+              src="/assets/images/woman-img/sun-hat.jpg"
+              alt="Sun Hat"
+              class="rounded-md mb-4 object-cover h-48 w-full"
+            />
+            <h3 class="text-lg font-semibold mb-2">Sun Hat</h3>
+            <p class="text-green-600 font-bold mb-4">Rs 299</p>
+            <button
+              data-name="Sun Hat"
+              class="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700 transition"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </main>
+      <footer class="bg-green-600 text-white py-10">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+          <div>
+            <h3 class="text-xl font-bold mb-4">FashionHub</h3>
+            <p>
+              Trendy, affordable fashion for everyone. Shop with confidence!
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+            <ul>
+              <li><a href="#" class="hover:underline">Home</a></li>
+              <li><a href="#" class="hover:underline">About</a></li>
+              <li><a href="#" class="hover:underline">Products</a></li>
+              <li><a href="#" class="hover:underline">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-2">Contact Us</h4>
+            <p>Email: support@fashionhub.com</p>
+            <p>Phone: +977 9812345678</p>
+            <div class="flex space-x-4 mt-2">
+              <i class="fab fa-facebook text-xl hover:text-gray-300"></i>
+              <i class="fab fa-instagram text-xl hover:text-gray-300"></i>
+              <i class="fab fa-twitter text-xl hover:text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

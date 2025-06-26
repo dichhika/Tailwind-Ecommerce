@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Responsive Navbar with Mobile Floating Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="text-2xl font-bold text-green-600">
+          Fashion<span class="text-black">Hub</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-6 font-semibold">
+          <!-- Links -->
+          <ul class="flex space-x-6 items-center">
+            <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+            <li><a href="about.html" class="hover:text-green-600">About</a></li>
+
+            <li class="relative">
+              <button
+                id="desktopProductBtn"
+                class="hover:text-green-600 flex items-center focus:outline-none"
+              >
+                Product
+                <i
+                  id="desktopProductIcon"
+                  class="fas fa-chevron-down ml-1 transition-transform"
+                ></i>
+              </button>
+              <ul
+                id="desktopProductSubMenu"
+                class="absolute left-0 mt-2 bg-white shadow-md rounded hidden min-w-[120px]"
+              >
+                <li>
+                  <a href="men.html" class="block px-4 py-2 hover:bg-green-100"
+                    >Men</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="women.html"
+                    class="block px-4 py-2 hover:bg-green-100"
+                    >Women</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="contact.html" class="hover:text-green-600">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Search input + icon on desktop -->
+          <div
+            class="flex items-center border border-gray-300 rounded px-2 ml-6"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              class="outline-none px-2 py-1 text-sm"
+            />
+            <button class="text-green-600">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Cart & Login icons on desktop -->
+          <div class="flex items-center space-x-6 text-lg ml-6">
+            <button title="Cart" class="hover:text-green-600 relative">
+              <i class="fas fa-shopping-cart"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
+                >0</span
+              >
+            </button>
+
+            <button title="Login" class="hover:text-green-600">
+              <i class="fas fa-user"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden">
+          <button id="menuBtn" class="text-3xl text-green-600">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden px-6 pb-4 space-y-3 bg-white border-t border-gray-200"
+      >
+        <a href="index.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Home</a
+        >
+        <a href="about.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >About</a
+        >
+
+        <!-- Product Mobile -->
+        <div>
+          <button
+            id="productBtn"
+            class="w-full text-left px-2 py-2 hover:bg-green-100 rounded flex justify-between items-center"
+          >
+            Product
+            <i
+              id="productIcon"
+              class="fas fa-chevron-down transition-transform"
+            ></i>
+          </button>
+          <div id="productSubMenu" class="hidden pl-4 mt-1 space-y-1">
+            <a
+              href="men.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Men</a
+            >
+            <a
+              href="women.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Women</a
+            >
+          </div>
+        </div>
+
+        <a
+          href="contact.html"
+          class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Contact</a
+        >
+      </div>
+    </nav>
+
+    <!-- Mobile floating search button & input -->
+    <div
+      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
+    >
+      <input
+        id="mobileSearchInput"
+        type="text"
+        placeholder="Search..."
+        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
+      />
+      <button
+        id="mobileSearchBtn"
+        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
+        title="Search"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <!-- About Section -->
+    <section class="py-16 px-6 max-w-5xl mx-auto text-center">
+      <h1 class="text-4xl font-bold text-green-600 mb-4">About FashionHub</h1>
+      <p class="text-lg mb-6">
+        Welcome to <strong>FashionHub</strong> - your one-stop destination for
+        trendy, affordable, and high-quality clothing for all. We believe
+        fashion should be fun, expressive, and accessible to everyone,
+        everywhere.
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 mt-10 text-center">
+        <div
+          class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition"
+        >
+          <i class="fas fa-bullseye text-3xl text-green-600 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Our Mission</h3>
+          <p>
+            To empower individuals with confidence through affordable and
+            stylish fashion.
+          </p>
+        </div>
+        <div
+          class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition"
+        >
+          <i class="fas fa-heart text-3xl text-green-600 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Our Values</h3>
+          <p>
+            We value creativity, quality, sustainability, and above all, our
+            customers' happiness.
+          </p>
+        </div>
+        <div
+          class="bg-green-50 p-6 rounded-lg shadow hover:shadow-lg transition"
+        >
+          <i class="fas fa-users text-3xl text-green-600 mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Our Team</h3>
+          <p>
+            A passionate team of designers, developers, and dreamers building
+            the future of fashion.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-green-100 py-10 text-center">
+      <h2 class="text-2xl font-bold text-green-700 mb-2">
+        Join Our Fashion Journey
+      </h2>
+      <p class="mb-6">
+        Follow us on social media or reach out to know more about our latest
+        collections and offers.
+      </p>
+      <div class="flex justify-center space-x-6 text-green-600 text-2xl">
+        <a href="#"><i class="fab fa-facebook hover:text-green-800"></i></a>
+        <a href="#"><i class="fab fa-instagram hover:text-pink-600"></i></a>
+        <a href="#"><i class="fab fa-twitter hover:text-green-400"></i></a>
+      </div>
+    </section>
+
+    <footer class="bg-green-600 text-white py-10">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-xl font-bold mb-4">FashionHub</h3>
+          <p>Trendy, affordable fashion for everyone. Shop with confidence!</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+          <ul>
+            <li><a href="#" class="hover:underline">Home</a></li>
+            <li><a href="#" class="hover:underline">About</a></li>
+            <li><a href="#" class="hover:underline">Products</a></li>
+            <li><a href="#" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-2">Contact Us</h4>
+          <p>Email: support@fashionhub.com</p>
+          <p>Phone: +977 9812345678</p>
+          <div class="flex space-x-4 mt-2">
+            <i class="fab fa-facebook text-xl hover:text-gray-300"></i>
+            <i class="fab fa-instagram text-xl hover:text-gray-300"></i>
+            <i class="fab fa-twitter text-xl hover:text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -81,7 +81,7 @@
           <!-- Cart & Login icons on desktop -->
           <div class="flex items-center space-x-6 text-lg ml-6">
             <button title="Cart" class="hover:text-green-600 relative">
-              <i class="fas fa-shopping-cart" id="cart"></i>
+              <a href="cart.html"><i class="fas fa-shopping-cart" id="cart"></i></a>
               <span
                 class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
                 id="cart-count">0</span
@@ -256,31 +256,31 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       <!-- Product Card -->
       <div class="bg-gray-100 p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1587614382346-ac3e0fc209d4?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/Floral-dress.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Floral Summer Dress</h3>
-        <p class="text-gray-600 mt-1">Rs. 1,299</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <p class="text-gray-600 mt-1">Rs 1,299</p>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition" data-name="Floral Dress" id="cart">Add to Cart</button>
       </div>
 
       <div class="bg-gray-100 p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1542060748-10c28b62716f?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/pink-hoodie.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Casual Pink Hoodie</h3>
-        <p class="text-gray-600 mt-1">Rs. 999</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <p class="text-gray-600 mt-1">Rs 999</p>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"   data-name="Casual Pink Hoodie">Add to Cart</button>
       </div>
 
       <div class="bg-gray-100 p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1622519407086-91f6cba0f92d?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/high-jeans.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">High Waist Jeans</h3>
-        <p class="text-gray-600 mt-1">Rs. 1,499</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <p class="text-gray-600 mt-1">Rs 1,499</p>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"   data-name="Hign Jeans">Add to Cart</button>
       </div>
 
       <div class="bg-gray-100 p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1586728001990-9ff3b88eb4c1?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/winter-coat.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Winter Coat</h3>
         <p class="text-gray-600 mt-1">Rs. 2,499</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"   data-name="Winter Coat">Add to Cart</button>
       </div>
     </div>
 
@@ -297,31 +297,31 @@
     
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d68?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/denima-jacket.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Denim Jacket</h3>
         <p class="text-gray-600 mt-1">Rs. 1,899</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"   data-name="Denim Jacket">Add to Cart</button>
       </div>
 
       <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1620781612707-4391b83e3df2?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/casual-tshirt.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Casual T-Shirt</h3>
         <p class="text-gray-600 mt-1">Rs. 699</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"   data-name="Casual T-Shirt">Add to Cart</button>
       </div>
 
       <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/leather-jacket.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Brown Leather Jacket</h3>
-        <p class="text-gray-600 mt-1">Rs. 2,199</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <p class="text-gray-600 mt-1">Rs 2,199</p>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"  data-name="Leather Jacket">Add to Cart</button>
       </div>
 
       <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center text-center">
-        <img src="https://images.unsplash.com/photo-1602810313162-3d5cdd258a54?auto=format&fit=crop&w=600&q=80" class="w-full h-52 object-cover rounded mb-2" />
+        <img src="assets/images/home-img/men-shirt.jpg" class="w-full h-52 object-cover rounded mb-2" />
         <h3 class="text-lg font-semibold">Formal Shirt</h3>
         <p class="text-gray-600 mt-1">Rs. 999</p>
-        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition">Add to Cart</button>
+        <button class="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-blue-700 transition"  data-name="Formal Shirt">Add to Cart</button>
       </div>
     </div>
 
@@ -368,10 +368,10 @@
     <div>
       <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
       <ul>
-        <li><a href="#" class="hover:underline">Home</a></li>
-        <li><a href="#" class="hover:underline">About</a></li>
-        <li><a href="#" class="hover:underline">Products</a></li>
-        <li><a href="#" class="hover:underline">Contact</a></li>
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="about.html" class="hover:underline">About</a></li>
+        <li><a href="index.html" class="hover:underline">Products</a></li>
+        <li><a href="contact.html" class="hover:underline">Contact</a></li>
       </ul>
     </div>
     <div>

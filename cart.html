@@ -5,8 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Your Cart</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="bg-gray-100 text-gray-800">
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="text-2xl font-bold text-green-600">
+          Fashion<span class="text-black">Hub</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-6 font-semibold">
+          <!-- Links -->
+          <ul class="flex space-x-6 items-center">
+            <li><a href="index.html" class="hover:text-green-600">Home</a></li>
+            <li><a href="about.html" class="hover:text-green-600">About</a></li>
+
+            <li class="relative">
+              <button
+                id="desktopProductBtn"
+                class="hover:text-green-600 flex items-center focus:outline-none"
+              >
+                Product
+                <i
+                  id="desktopProductIcon"
+                  class="fas fa-chevron-down ml-1 transition-transform"
+                ></i>
+              </button>
+              <ul
+                id="desktopProductSubMenu"
+                class="absolute left-0 mt-2 bg-white shadow-md rounded hidden min-w-[120px]"
+              >
+                <li>
+                  <a href="men.html" class="block px-4 py-2 hover:bg-green-100"
+                    >Men</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="women.html"
+                    class="block px-4 py-2 hover:bg-green-100"
+                    >Women</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="contact.html" class="hover:text-green-600">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Search input + icon on desktop -->
+          <div
+            class="flex items-center border border-gray-300 rounded px-2 ml-6"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              class="outline-none px-2 py-1 text-sm"
+            />
+            <button class="text-green-600">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <!-- Cart & Login icons on desktop -->
+          <div class="flex items-center space-x-6 text-lg ml-6">
+            <button title="Cart" class="hover:text-green-600 relative">
+              <i class="fas fa-shopping-cart" id="cart"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
+                id="cart-count"
+                >0</span
+              >
+            </button>
+
+            <button title="Login" class="hover:text-green-600">
+              <i class="fas fa-user"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden">
+          <button id="menuBtn" class="text-3xl text-green-600">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="md:hidden hidden px-6 pb-4 space-y-3 bg-white border-t border-gray-200"
+      >
+        <a href="index.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Home</a
+        >
+        <a href="about.html" class="block px-2 py-2 hover:bg-green-100 rounded"
+          >About</a
+        >
+
+        <!-- Product Mobile -->
+        <div>
+          <button
+            id="productBtn"
+            class="w-full text-left px-2 py-2 hover:bg-green-100 rounded flex justify-between items-center"
+          >
+            Product
+            <i
+              id="productIcon"
+              class="fas fa-chevron-down transition-transform"
+            ></i>
+          </button>
+          <div id="productSubMenu" class="hidden pl-4 mt-1 space-y-1">
+            <a
+              href="men.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Men</a
+            >
+            <a
+              href="women.html"
+              class="block px-2 py-1 hover:bg-green-100 rounded"
+              >Women</a
+            >
+          </div>
+        </div>
+
+        <a
+          href="contact.html"
+          class="block px-2 py-2 hover:bg-green-100 rounded"
+          >Contact</a
+        >
+      </div>
+    </nav>
     <div class="max-w-2xl mx-auto px-6 py-10">
       <h1 class="text-3xl font-bold mb-6">🛒 Your Cart</h1>
       <div

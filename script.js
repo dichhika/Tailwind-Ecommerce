@@ -37,24 +37,21 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Mobile floating search toggle input visibility
-
+// Cart functionality
 document.addEventListener("DOMContentLoaded", () => {
   let cartCount = 0;
-  const cartCountSpan = document.getElementById("card-count");
+  const cartCountSpan = document.getElementById("cart-count"); // fixed id
   const addToCartButtons = document.querySelectorAll("[data-name]");
 
   addToCartButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const productName = button.getAttribute("data-name");
 
-      // Update cart count
       cartCount++;
       if (cartCountSpan) {
         cartCountSpan.textContent = cartCount;
       }
 
-      // You can optionally store the product or show a message
       alert(`${productName} added to cart`);
     });
   });

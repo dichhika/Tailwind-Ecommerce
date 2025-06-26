@@ -41,7 +41,7 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   let cartCount = 0;
-  const cartCountSpan = document.querySelector(".fa-shopping-cart + span");
+  const cartCountSpan = document.getElementById("card-count");
   const addToCartButtons = document.querySelectorAll("[data-name]");
 
   addToCartButtons.forEach((button) => {

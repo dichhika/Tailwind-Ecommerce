@@ -37,22 +37,63 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Cart functionality
-document.addEventListener("DOMContentLoaded", () => {
-  let cartCount = 0;
-  const cartCountSpan = document.getElementById("cart-count"); // fixed id
-  const addToCartButtons = document.querySelectorAll("[data-name]");
+// 🛒 Cart functionality
+const cartButtons = document.querySelectorAll(".add-to-cart");
+const cartCountSpan = document.getElementById("cart-count");
 
-  addToCartButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const productName = button.getAttribute("data-name");
+// Initial cart count update on page load
+const updateCartCount = () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  if (cartCountSpan) {
+    cartCountSpan.textContent = totalItems;
+  }
+};
+updateCartCount();
 
-      cartCount++;
-      if (cartCountSpan) {
-        cartCountSpan.textContent = cartCount;
-      }
+// Add to cart logic
+cartButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const product = button.closest(".product");
 
-      alert(`${productName} added to cart`);
-    });
+    const name = button.getAttribute("data-name");
+    const price = parseFloat(button.getAttribute("data-price"));
+    const image = button.getAttribute("data-image");
+    const quantityInput = product.querySelector(".product-quantity");
+    const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+
+    const cartItem = { name, price, quantity, image };
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existingItem = cart.find((item) => item.name === name);
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      cart.push(cartItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(`${quantity} of "${name}" added to cart!`);
   });
+});
+// Login modal control
+const loginIcon = document.getElementById("loginIcon");
+const loginModal = document.getElementById("loginModal");
+const closeModal = document.getElementById("closeModal");
+
+loginIcon.addEventListener("click", () => {
+  loginModal.classList.remove("hidden");
+});
+
+closeModal.addEventListener("click", () => {
+  loginModal.classList.add("hidden");
+});
+
+loginModal.addEventListener("click", (e) => {
+  if (e.target === loginModal) {
+    loginModal.classList.add("hidden");
+  }
 });

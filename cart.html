@@ -2,17 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Cart</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
   </head>
-  <body class="bg-gray-100 text-gray-800">
+  <body class="bg-gray-100 text-gray-900">
     <nav class="bg-white shadow-md sticky top-0 z-50">
       <div
         class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
@@ -81,7 +82,9 @@
           <!-- Cart & Login icons on desktop -->
           <div class="flex items-center space-x-6 text-lg ml-6">
             <button title="Cart" class="hover:text-green-600 relative">
-              <i class="fas fa-shopping-cart" id="cart"></i>
+              <a href="cart.html"
+                ><i class="fas fa-shopping-cart" id="cart"></i
+              ></a>
               <span
                 class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
                 id="cart-count"
@@ -89,7 +92,7 @@
               >
             </button>
 
-            <button title="Login" class="hover:text-green-600">
+            <button title="Login" id="loginIcon" class="hover:text-green-600">
               <i class="fas fa-user"></i>
             </button>
           </div>
@@ -148,24 +151,248 @@
         >
       </div>
     </nav>
-    <div class="max-w-2xl mx-auto px-6 py-10">
-      <h1 class="text-3xl font-bold mb-6">🛒 Your Cart</h1>
-      <div
-        id="cart-container"
-        class="bg-white p-6 rounded shadow text-center text-lg font-semibold"
-      ></div>
+    <!-- Mobile floating search button & input -->
+    <div
+      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
+    >
+      <input
+        id="mobileSearchInput"
+        type="text"
+        placeholder="Search..."
+        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
+      />
+      <button
+        id="mobileSearchBtn"
+        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
+        title="Search"
+      >
+        <i class="fas fa-search"></i>
+      </button>
     </div>
+    <section class="min-h-screen py-10 px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-green-600 mb-6 text-center">
+          🛒 Your Cart
+        </h2>
 
+        <div id="cart-items" class="space-y-6"></div>
+
+        <div id="cart-summary" class="mt-10 p-4 bg-white rounded shadow hidden">
+          <div class="text-right space-y-2">
+            <p class="text-lg">
+              Total:
+              <span id="total" class="font-semibold text-green-700">Rs. 0</span>
+            </p>
+            <p class="text-lg">
+              Delivery Charge:
+              <span id="delivery" class="font-semibold text-green-700"
+                >Rs. 150</span
+              >
+            </p>
+            <p class="text-xl font-bold">
+              Grand Total:
+              <span id="grand-total" class="text-green-800">Rs. 0</span>
+            </p>
+          </div>
+          <div class="text-right mt-4">
+            <button
+              id="checkout-btn"
+              class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Login Modal -->
+    <div
+      id="loginModal"
+      class="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50 hidden"
+    >
+      <div class="bg-white w-full max-w-sm rounded-lg shadow-lg p-6 relative">
+        <button
+          id="closeModal"
+          class="absolute top-2 right-2 text-gray-600 hover:text-red-500 text-xl"
+        >
+          &times;
+        </button>
+        <h2 class="text-2xl font-bold text-green-600 text-center mb-4">
+          Login to FashionHub
+        </h2>
+        <form>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1" for="email"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-green-400"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1" for="password"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              class="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-green-400"
+              placeholder="********"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+          >
+            Login
+          </button>
+        </form>
+        <p class="mt-4 text-sm text-center">
+          Don't have an account?
+          <a href="signup.html" class="text-green-600 hover:underline"
+            >Sign Up</a
+          >
+        </p>
+      </div>
+    </div>
     <script>
-      const container = document.getElementById("cart-container");
-      const item = window.name; // get the stored item name
+      // Your cart rendering and update logic here (not changed)
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartCountSpan = document.getElementById("cart-count");
 
-      if (!item || item.trim() === "") {
-        container.textContent = "Your cart is empty.";
-      } else {
-        container.textContent = "Item added to cart: " + item;
-        window.name = ""; // clear it after showing
-      }
+      const updateCartCount = () => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        if (cartCountSpan) {
+          cartCountSpan.textContent = totalItems;
+        }
+      };
+
+      updateCartCount();
+
+      const renderCart = () => {
+        const container = document.getElementById("cart-items");
+        const totalBox = document.getElementById("cart-summary");
+        const totalSpan = document.getElementById("total");
+        const deliverySpan = document.getElementById("delivery");
+        const grandTotalSpan = document.getElementById("grand-total");
+
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+          container.innerHTML =
+            "<p class='text-center text-lg text-gray-600'>Your cart is empty.</p>";
+          totalBox.classList.add("hidden");
+          return;
+        }
+
+        let total = 0;
+        const deliveryCharge = 150;
+
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "flex items-center bg-white p-4 rounded shadow";
+
+          itemDiv.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded mr-4">
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold">${item.name}</h3>
+                  <p class="text-sm text-gray-500">Price: Rs. ${item.price}</p>
+                 <div class="flex items-center gap-2 mt-2">
+                    <button class="decrease px-2 py-1 bg-gray-300 rounded" data-index="${index}">-</button>
+                    <button class="increase px-2 py-1 bg-gray-300 rounded" data-index="${index}">+</button>
+                  </div>
+                  <p class="text-green-700 font-medium mt-1">Total: Rs. ${itemTotal}</p>
+                </div>
+                <button class="remove-item text-red-600 ml-4 text-xl" data-index="${index}" title="Remove">
+                  <i class="fas fa-trash"></i>
+                </button>
+              `;
+
+          container.appendChild(itemDiv);
+        });
+
+        totalSpan.textContent = `Rs. ${total}`;
+        deliverySpan.textContent = `Rs. ${deliveryCharge}`;
+        grandTotalSpan.textContent = `Rs. ${total + deliveryCharge}`;
+        totalBox.classList.remove("hidden");
+
+        attachEvents();
+      };
+
+      const updateCart = () => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      };
+
+      const attachEvents = () => {
+        document.querySelectorAll(".remove-item").forEach((btn) => {
+          btn.onclick = () => {
+            const index = parseInt(btn.dataset.index);
+            cart.splice(index, 1);
+            updateCart();
+          };
+        });
+
+        document.querySelectorAll(".increase").forEach((btn) => {
+          btn.onclick = () => {
+            const index = parseInt(btn.dataset.index);
+            cart[index].quantity++;
+            updateCart();
+          };
+        });
+
+        document.querySelectorAll(".decrease").forEach((btn) => {
+          btn.onclick = () => {
+            const index = parseInt(btn.dataset.index);
+            if (cart[index].quantity > 1) {
+              cart[index].quantity--;
+              updateCart();
+            }
+          };
+        });
+      };
+
+      renderCart();
+
+      // Login modal control
+      const loginIcon = document.getElementById("loginIcon");
+      const loginModal = document.getElementById("loginModal");
+      const closeModal = document.getElementById("closeModal");
+      const checkoutBtn = document.getElementById("checkout-btn");
+
+      const openLoginModal = () => {
+        loginModal.classList.remove("hidden");
+      };
+
+      const closeLoginModal = () => {
+        loginModal.classList.add("hidden");
+      };
+
+      loginIcon.addEventListener("click", openLoginModal);
+      checkoutBtn.addEventListener("click", openLoginModal);
+
+      closeModal.addEventListener("click", closeLoginModal);
+
+      loginModal.addEventListener("click", (e) => {
+        if (e.target === loginModal) {
+          closeLoginModal();
+        }
+        // Clear cart on page load to make it empty after refresh
+        localStorage.removeItem("cart");
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartCountSpan = document.getElementById("cart-count");
+      });
     </script>
   </body>
 </html>

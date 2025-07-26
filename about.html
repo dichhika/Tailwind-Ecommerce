@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Responsive Navbar with Mobile Floating Search</title>
+    <title>Clothing Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -18,9 +18,9 @@
         class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
       >
         <!-- Logo -->
-        <div class="text-2xl font-bold text-green-600">
+        <a href="index.html" class="text-2xl font-bold text-green-600">
           Fashion<span class="text-black">Hub</span>
-        </div>
+        </a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-6 font-semibold">
@@ -64,20 +64,6 @@
             </li>
           </ul>
 
-          <!-- Search input + icon on desktop -->
-          <div
-            class="flex items-center border border-gray-300 rounded px-2 ml-6"
-          >
-            <input
-              type="text"
-              placeholder="Search..."
-              class="outline-none px-2 py-1 text-sm"
-            />
-            <button class="text-green-600">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-
           <!-- Cart & Login icons on desktop -->
           <div class="flex items-center space-x-6 text-lg ml-6">
             <button title="Cart" class="hover:text-green-600 relative">
@@ -91,7 +77,11 @@
                 >0</span
               >
             </button>
-            <button title="Login" id="loginIcon" class="hover:text-green-600">
+            <button
+              title="Login"
+              id="loginIconDesktop"
+              class="hover:text-green-600"
+            >
               <i class="fas fa-user"></i>
             </button>
           </div>
@@ -148,27 +138,24 @@
           class="block px-2 py-2 hover:bg-green-100 rounded"
           >Contact</a
         >
+        <a
+          href="cart.html"
+          class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2"
+        >
+          <i class="fas fa-shopping-cart text-green-600"></i>
+          <span>Cart</span>
+        </a>
+
+        <button
+          title="Login"
+          id="loginIconMobile"
+          class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2"
+        >
+          <i class="fas fa-user text-green-600"></i>
+          <span><a href=""></a>Login</span>
+        </button>
       </div>
     </nav>
-
-    <!-- Mobile floating search button & input -->
-    <div
-      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
-    >
-      <input
-        id="mobileSearchInput"
-        type="text"
-        placeholder="Search..."
-        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
-      />
-      <button
-        id="mobileSearchBtn"
-        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
-        title="Search"
-      >
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
 
     <!-- About Section -->
     <section class="py-16 px-6 max-w-5xl mx-auto text-center">

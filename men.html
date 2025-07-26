@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Responsive Navbar with Mobile Floating Search</title>
+    <title>Clothing Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -14,84 +14,40 @@
   </head>
   <body class="bg-gray-100 text-gray-800">
     <nav class="bg-white shadow-md sticky top-0 z-50">
-      <div
-        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
-      >
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Logo -->
-        <div class="text-2xl font-bold text-green-600">
+        <a href="index.html" class="text-2xl font-bold text-green-600">
           Fashion<span class="text-black">Hub</span>
-        </div>
-
+        </a>
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-6 font-semibold">
-          <!-- Links -->
           <ul class="flex space-x-6 items-center">
             <li><a href="index.html" class="hover:text-green-600">Home</a></li>
             <li><a href="about.html" class="hover:text-green-600">About</a></li>
-
             <li class="relative">
-              <button
-                id="desktopProductBtn"
-                class="hover:text-green-600 flex items-center focus:outline-none"
-              >
-                Product
-                <i
-                  id="desktopProductIcon"
-                  class="fas fa-chevron-down ml-1 transition-transform"
-                ></i>
+              <button id="desktopProductBtn" class="hover:text-green-600 flex items-center focus:outline-none">
+                Product <i id="desktopProductIcon" class="fas fa-chevron-down ml-1 transition-transform"></i>
               </button>
-              <ul
-                id="desktopProductSubMenu"
-                class="absolute left-0 mt-2 bg-white shadow-md rounded hidden min-w-[120px]"
-              >
-                <li>
-                  <a href="men.html" class="block px-4 py-2 hover:bg-green-100"
-                    >Men</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="women.html"
-                    class="block px-4 py-2 hover:bg-green-100"
-                    >Women</a
-                  >
-                </li>
+              <ul id="desktopProductSubMenu" class="absolute left-0 mt-2 bg-white shadow-md rounded hidden min-w-[120px]">
+                <li><a href="men.html" class="block px-4 py-2 hover:bg-green-100">Men</a></li>
+                <li><a href="women.html" class="block px-4 py-2 hover:bg-green-100">Women</a></li>
               </ul>
             </li>
-
             <li><a href="contact.html" class="hover:text-green-600">Contact</a></li>
           </ul>
 
-          <!-- Search input + icon on desktop -->
-          <div
-            class="flex items-center border border-gray-300 rounded px-2 ml-6"
-          >
-            <input
-              type="text"
-              placeholder="Search..."
-              class="outline-none px-2 py-1 text-sm"
-            />
-            <button class="text-green-600">
+          <!-- Icons -->
+          <div class="flex items-center space-x-4 text-xl ml-6">
+            <button id="desktopSearchInput" title="Search" class="text-green-600 hover:text-green-800 transition">
               <i class="fas fa-search"></i>
             </button>
-          </div>
-
-          <!-- Cart & Login icons on desktop -->
-          <div class="flex items-center space-x-6 text-lg ml-6">
-            <button title="Cart" class="hover:text-green-600 relative">
-              
-              <a href="cart.html"><i class="fas fa-shopping-cart" id="cart"></i></a>
-
-              <span
-                class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full"
-                id="cart-count">0</span
-              >
+            <button title="Login" id="loginIconDesktop" class="text-green-600 hover:text-green-800 transition">
+    <i class="fas fa-user"></i>
+  </button>
+            <button title="Cart" class="relative text-green-600 hover:text-green-800 transition">
+              <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+              <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full" id="cart-count">0</span>
             </button>
-
-            <button title="Login" id="loginIcon" class="hover:text-green-600">
-  <i class="fas fa-user"></i>
-</button>
-
           </div>
         </div>
 
@@ -104,69 +60,32 @@
       </div>
 
       <!-- Mobile Menu -->
-      <div
-        id="mobileMenu"
-        class="md:hidden hidden px-6 pb-4 space-y-3 bg-white border-t border-gray-200"
-      >
-        <a href="index.html" class="block px-2 py-2 hover:bg-green-100 rounded"
-          >Home</a
-        >
-        <a href="about.html" class="block px-2 py-2 hover:bg-green-100 rounded"
-          >About</a
-        >
-
-        <!-- Product Mobile -->
+      <div id="mobileMenu" class="md:hidden hidden px-6 pb-4 space-y-3 bg-white border-t border-gray-200">
+        <a href="index.html" class="block px-2 py-2 hover:bg-green-100 rounded">Home</a>
+        <a href="about.html" class="block px-2 py-2 hover:bg-green-100 rounded">About</a>
         <div>
-          <button
-            id="productBtn"
-            class="w-full text-left px-2 py-2 hover:bg-green-100 rounded flex justify-between items-center"
-          >
-            Product
-            <i
-              id="productIcon"
-              class="fas fa-chevron-down transition-transform"
-            ></i>
+          <button id="productBtn" class="w-full text-left px-2 py-2 hover:bg-green-100 rounded flex justify-between items-center">
+            Product <i id="productIcon" class="fas fa-chevron-down transition-transform"></i>
           </button>
           <div id="productSubMenu" class="hidden pl-4 mt-1 space-y-1">
-            <a
-              href="men.html"
-              class="block px-2 py-1 hover:bg-green-100 rounded"
-              >Men</a
-            >
-            <a
-              href="women.html"
-              class="block px-2 py-1 hover:bg-green-100 rounded"
-              >Women</a
-            >
+            <a href="men.html" class="block px-2 py-1 hover:bg-green-100 rounded">Men</a>
+            <a href="women.html" class="block px-2 py-1 hover:bg-green-100 rounded">Women</a>
           </div>
         </div>
+        <a href="contact.html" class="block px-2 py-2 hover:bg-green-100 rounded">Contact</a>
+        <a href="cart.html" class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2">
+          <i class="fas fa-shopping-cart text-green-600"></i>
+          <span>Cart</span>
+        </a>
 
-        <a
-          href="contact.html"
-          class="block px-2 py-2 hover:bg-green-100 rounded"
-          >Contact</a
-        >
+    <button title="Login" id="loginIconMobile" class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2">
+    <i class="fas fa-user text-green-600"></i>
+    <span>Login</span>
+  </button>
       </div>
     </nav>
 
-    <!-- Mobile floating search button & input -->
-    <div
-      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
-    >
-      <input
-        id="mobileSearchInput"
-        type="text"
-        placeholder="Search..."
-        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
-      />
-      <button
-        id="mobileSearchBtn"
-        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
-        title="Search"
-      >
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
+ 
     <!-- products -->
  
       <div class="bg-gray-100">
@@ -186,7 +105,7 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
   <!-- Product 1 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/Classic-Tshirt.webp" alt="Classic T-Shirt"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Classic T-Shirt</h3>
@@ -199,7 +118,7 @@
   </div>
 
   <!-- Product 2 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/Slim-jeans.jpg" alt="Slim Fit Jeans"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Slim Fit Jeans</h3>
@@ -212,7 +131,7 @@
   </div>
 
   <!-- Product 3 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/hoodie.jpg" alt="Comfort Hoodie"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Comfort Hoodie</h3>
@@ -225,7 +144,7 @@
   </div>
 
   <!-- Product 4 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/leather-jacket.jpg" alt="Leather Jacket"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Leather Jacket</h3>
@@ -238,7 +157,7 @@
   </div>
 
   <!-- Product 5 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/shirt.jpg" alt="Formal Shirt"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Formal Shirt</h3>
@@ -251,7 +170,7 @@
   </div>
 
   <!-- Product 6 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/shorts.jpg" alt="Casual Shorts"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Casual Shorts</h3>
@@ -264,7 +183,7 @@
   </div>
 
   <!-- Product 7 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/suit.jpg" alt="Business Suit"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Business Suit</h3>
@@ -277,7 +196,7 @@
   </div>
 
   <!-- Product 8 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/plo tshirt.webp" alt="Polo T-Shirt"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Polo T-Shirt</h3>
@@ -290,7 +209,7 @@
   </div>
 
   <!-- Product 9 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/relax-jeams.jpg" alt="Relaxed Jeans"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Relaxed Jeans</h3>
@@ -303,7 +222,7 @@
   </div>
 
   <!-- Product 10 -->
-  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product">
+  <div class="bg-white rounded-lg shadow hover:shadow-lg transition p-4 flex flex-col items-center text-center product" class="product">
     <img src="assets/images/men-img/cap.jpg" alt="Baseball Cap"
       class="rounded-md mb-2 object-cover h-48 w-full product-image" />
     <h3 class="text-lg font-semibold product-name">Baseball Cap</h3>

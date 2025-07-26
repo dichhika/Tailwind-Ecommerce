@@ -19,9 +19,9 @@
         class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
       >
         <!-- Logo -->
-        <div class="text-2xl font-bold text-green-600">
+        <a href="index.html" class="text-2xl font-bold text-green-600">
           Fashion<span class="text-black">Hub</span>
-        </div>
+        </a>
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-6 font-semibold">
@@ -65,20 +65,6 @@
             </li>
           </ul>
 
-          <!-- Search input + icon on desktop -->
-          <div
-            class="flex items-center border border-gray-300 rounded px-2 ml-6"
-          >
-            <input
-              type="text"
-              placeholder="Search..."
-              class="outline-none px-2 py-1 text-sm"
-            />
-            <button class="text-green-600">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-
           <!-- Cart & Login icons on desktop -->
           <div class="flex items-center space-x-6 text-lg ml-6">
             <button title="Cart" class="hover:text-green-600 relative">
@@ -92,7 +78,11 @@
               >
             </button>
 
-            <button title="Login" id="loginIcon" class="hover:text-green-600">
+            <button
+              title="Login"
+              id="loginIconDesktop"
+              class="hover:text-green-600"
+            >
               <i class="fas fa-user"></i>
             </button>
           </div>
@@ -149,26 +139,25 @@
           class="block px-2 py-2 hover:bg-green-100 rounded"
           >Contact</a
         >
+        <a
+          href="cart.html"
+          class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2"
+        >
+          <i class="fas fa-shopping-cart text-green-600"></i>
+          <span>Cart</span>
+        </a>
+
+        <button
+          title="Login"
+          id="loginIconMobile"
+          class="block px-2 py-2 hover:bg-green-100 rounded flex items-center space-x-2"
+        >
+          <i class="fas fa-user text-green-600"></i>
+          <span><a href=""></a>Login</span>
+        </button>
       </div>
     </nav>
-    <!-- Mobile floating search button & input -->
-    <div
-      class="md:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
-    >
-      <input
-        id="mobileSearchInput"
-        type="text"
-        placeholder="Search..."
-        class="hidden w-48 px-3 py-2 rounded-md border border-gray-300 shadow focus:outline-none focus:ring focus:ring-green-500"
-      />
-      <button
-        id="mobileSearchBtn"
-        class="bg-green-600 text-white rounded-full p-4 shadow-lg hover:bg-green-700 transition"
-        title="Search"
-      >
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
+
     <section class="min-h-screen py-10 px-6">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-green-600 mb-6 text-center">
@@ -260,139 +249,6 @@
         </p>
       </div>
     </div>
-    <script>
-      // Your cart rendering and update logic here (not changed)
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      const cartCountSpan = document.getElementById("cart-count");
-
-      const updateCartCount = () => {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        if (cartCountSpan) {
-          cartCountSpan.textContent = totalItems;
-        }
-      };
-
-      updateCartCount();
-
-      const renderCart = () => {
-        const container = document.getElementById("cart-items");
-        const totalBox = document.getElementById("cart-summary");
-        const totalSpan = document.getElementById("total");
-        const deliverySpan = document.getElementById("delivery");
-        const grandTotalSpan = document.getElementById("grand-total");
-
-        container.innerHTML = "";
-
-        if (cart.length === 0) {
-          container.innerHTML =
-            "<p class='text-center text-lg text-gray-600'>Your cart is empty.</p>";
-          totalBox.classList.add("hidden");
-          return;
-        }
-
-        let total = 0;
-        const deliveryCharge = 150;
-
-        cart.forEach((item, index) => {
-          const itemTotal = item.price * item.quantity;
-          total += itemTotal;
-
-          const itemDiv = document.createElement("div");
-          itemDiv.className = "flex items-center bg-white p-4 rounded shadow";
-
-          itemDiv.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded mr-4">
-                <div class="flex-1">
-                  <h3 class="text-lg font-semibold">${item.name}</h3>
-                  <p class="text-sm text-gray-500">Price: Rs. ${item.price}</p>
-                 <div class="flex items-center gap-2 mt-2">
-                    <button class="decrease px-2 py-1 bg-gray-300 rounded" data-index="${index}">-</button>
-                    <button class="increase px-2 py-1 bg-gray-300 rounded" data-index="${index}">+</button>
-                  </div>
-                  <p class="text-green-700 font-medium mt-1">Total: Rs. ${itemTotal}</p>
-                </div>
-                <button class="remove-item text-red-600 ml-4 text-xl" data-index="${index}" title="Remove">
-                  <i class="fas fa-trash"></i>
-                </button>
-              `;
-
-          container.appendChild(itemDiv);
-        });
-
-        totalSpan.textContent = `Rs. ${total}`;
-        deliverySpan.textContent = `Rs. ${deliveryCharge}`;
-        grandTotalSpan.textContent = `Rs. ${total + deliveryCharge}`;
-        totalBox.classList.remove("hidden");
-
-        attachEvents();
-      };
-
-      const updateCart = () => {
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCart();
-        updateCartCount();
-      };
-
-      const attachEvents = () => {
-        document.querySelectorAll(".remove-item").forEach((btn) => {
-          btn.onclick = () => {
-            const index = parseInt(btn.dataset.index);
-            cart.splice(index, 1);
-            updateCart();
-          };
-        });
-
-        document.querySelectorAll(".increase").forEach((btn) => {
-          btn.onclick = () => {
-            const index = parseInt(btn.dataset.index);
-            cart[index].quantity++;
-            updateCart();
-          };
-        });
-
-        document.querySelectorAll(".decrease").forEach((btn) => {
-          btn.onclick = () => {
-            const index = parseInt(btn.dataset.index);
-            if (cart[index].quantity > 1) {
-              cart[index].quantity--;
-              updateCart();
-            }
-          };
-        });
-      };
-
-      renderCart();
-
-      // Login modal control
-      const loginIcon = document.getElementById("loginIcon");
-      const loginModal = document.getElementById("loginModal");
-      const closeModal = document.getElementById("closeModal");
-      const checkoutBtn = document.getElementById("checkout-btn");
-
-      const openLoginModal = () => {
-        loginModal.classList.remove("hidden");
-      };
-
-      const closeLoginModal = () => {
-        loginModal.classList.add("hidden");
-      };
-
-      loginIcon.addEventListener("click", openLoginModal);
-      checkoutBtn.addEventListener("click", openLoginModal);
-
-      closeModal.addEventListener("click", closeLoginModal);
-
-      loginModal.addEventListener("click", (e) => {
-        if (e.target === loginModal) {
-          closeLoginModal();
-        }
-        // Clear cart on page load to make it empty after refresh
-        localStorage.removeItem("cart");
-
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const cartCountSpan = document.getElementById("cart-count");
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
